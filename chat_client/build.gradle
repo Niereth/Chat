@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = 'ChatClientLauncher'
+
+jar {
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+    from {configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }}
+}
+
+group 'fs_teterin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.26'
+    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile group: 'com.intellij', name: 'forms_rt', version: '7.0.3'
+}
+
+dependencies {
+    compile project(':chat_common')
+}

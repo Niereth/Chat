@@ -1,0 +1,4 @@
+rootProject.name = 'task5'
+include 'chat_client'
+include 'chat_server'
+include 'chat_common'
